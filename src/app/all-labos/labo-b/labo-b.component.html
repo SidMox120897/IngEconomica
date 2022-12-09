@@ -1,0 +1,76 @@
+
+  <div class="row pt-5">
+    <div class="col-6">
+      <h3>
+        Datos
+      </h3>
+      <form (ngSubmit)="CargarResultados()">
+        <div class="mb-2 mt-2">
+          <label class="form-label">Capital (Valor Presente):</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ingresar Capital"
+            name="capital"
+            [(ngModel)]="capital"
+            />
+        </div>
+        <div class="mb-2 mt-2">
+          <label class="form-label">Tasa de interes(%):</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ingresar Tasa"
+            name="Tasa"
+            [(ngModel)]="tasa"
+            />
+        </div>
+        <div class="mb-2 mt-2">
+          <label class="form-label">Periodo:</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ingresar tiempo"
+            name="tiempo"
+            [(ngModel)]="tiempo"
+            />
+        </div>
+        <div class="mb-2 mt-2">
+          <label class="form-label">Unidad de tiempo (aa=año, mm=meses, dd=dias):</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingresar Unidad de Tiempo"
+            name="UniTime"
+            [(ngModel)]="unitime"
+            />
+        </div>
+        <button type="submit">
+          Correr
+        </button>
+      </form>
+    </div>
+    <div class="col-6">
+      <h3>
+        Resultados
+      </h3>
+      <label class="form-label">Interes: {{interes}}</label>
+      <br>
+      <label class="form-label">Valor Futuro: {{monto}}</label>
+      <div class="row">
+        <h3>
+          Graficos
+        </h3>
+        <ngx-charts-advanced-pie-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="gradient"
+          (select)="onSelect($event)"
+          (activate)="onActivate($event)"
+          (deactivate)="onDeactivate($event)"
+          >
+        </ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </div>

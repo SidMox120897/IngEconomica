@@ -1,0 +1,100 @@
+
+  <div class="row pt-5">
+    <h1>Sistema Aleman</h1>
+    <div class="col-6">
+      <h3>
+        Datos
+      </h3>
+      <form (ngSubmit)="CargarResultados()">
+        <div class="mb-2 mt-2">
+          <label class="form-label">Prestamo:</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ingresar prestamo"
+            name="prestamo"
+            [(ngModel)]="prestamo"
+            />
+        </div>
+        <div class="mb-2 mt-2">
+          <label class="form-label">Tasa de interes(%):</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ingresar Tasa"
+            name="Tasa"
+            [(ngModel)]="tasa"
+            />
+        </div>
+        <div class="mb-2 mt-2">
+          <label class="form-label">Periodo:</label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ingresar tiempo"
+            name="tiempo"
+            [(ngModel)]="tiempo"
+            />
+        </div>
+        <div class="mb-2 mt-2">
+          <label class="form-label">Unidad de tiempo (aa=año, mm=meses, dd=dias):</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingresar Unidad de Tiempo"
+            name="UniTime"
+            [(ngModel)]="unitime"
+            />
+        </div>
+        <button type="submit">
+          Correr
+        </button>
+      </form>
+    </div>
+    <div class="col-6">
+      <h3>
+        Resultados
+      </h3>
+      <label class="form-label">Amortizacion: {{amortizacion}}</label>
+      <br>
+      <label class="form-label">Valor Futuro: {{interes+prestamo}}</label>
+      <div class="row">
+        <h3>
+          Graficos
+        </h3>
+        <ngx-charts-advanced-pie-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="gradient"
+          (select)="onSelect($event)"
+          (activate)="onActivate($event)"
+          (deactivate)="onDeactivate($event)"
+          >
+        </ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>Tabla</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Cuota</th>
+          <th scope="col">Interes</th>
+          <th scope="col">Amortizacion</th>
+          <th scope="col">Saldo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let x of cuotaCol;index as i;">
+          <th scope="row">{{i}}</th>
+          <td>{{x}}</td>
+          <td>{{interesArr[i]}}</td>
+          <td>{{AmortizacionArr[i]}}</td>
+          <td>{{SaldoArr[i]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
